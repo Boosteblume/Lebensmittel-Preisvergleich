@@ -7,14 +7,13 @@ from selenium.webdriver import chrome
 PATH = "/Users/maxbl/OneDrive/Desktop/Coding/chromedriver.exe"
 
 driver = webdriver.Chrome(PATH)
-#load the website
-driver.get(r"https://www.aldi-nord.de/")
+
+
+driver.get(r"https://www.edeka.de/unsere-marken/suche-nach-edeka-produkten/suche-nach-edeka-produkten/sortimentkategorien.jsp")
 time.sleep(5)
-#click the "Prospekte"
-driver.find_element_by_xpath("/html/body/header/div/nav/div[1]/div[2]/div[1]/div/div[1]/ul/li[3]/a/span[2]").click()
-time.sleep(3)
-#get to the current Prospekt
-driver.find_element_by_xpath("/html/body/div[2]/div[1]/div[3]/div[1]/div[1]/div/div[2]/a").click()
+acceptframe = driver.find_element_by_id("popin_tc_privacy_button_2").click()
+
+
 
 
 def pick_a_product():
@@ -29,14 +28,15 @@ def pick_a_product():
     
     return choosen_product
 
-#product= pick_a_product()
-
+product= pick_a_product()
 
 def enter_website():
-    driver.get(r"https://www.aldi-nord.de/")
-    search_bar = driver.find_element_by_name("q")
+    driver.get(r"https://www.edeka.de/unsere-marken/suche-nach-edeka-produkten/suche-nach-edeka-produkten/sortimentkategorien.jsp")
+    search_bar = driver.find_element_by_id("textsearchproduct")
     search_bar.send_keys(product)
     search_bar.send_keys(Keys.RETURN)
 
-#enter_website()
+enter_website()
 
+time.sleep(5)
+driver.quit()
