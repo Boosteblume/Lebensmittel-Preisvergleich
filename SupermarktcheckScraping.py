@@ -20,11 +20,13 @@ driver.find_element_by_xpath("/html/body/div/div[3]/div[3]/button").click()
 
 
 
+
 def pick_a_product():
     print("Hello, which product would you like to choose ? ")
     print("")
     #Wie machen wir es bzgl. Tippfehlern bei der Produkt suche ? 
     #und wie machen wir es bzgl. Cola => Coca Cola, Pepsi Cola etc
+
     choosen_product = input()
 
     print("You choose ", choosen_product)
