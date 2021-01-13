@@ -2,16 +2,25 @@
 # Website https://www.supermarktcheck.de/lebensmittel/
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 import time
+import os
+from selenium.webdriver import chrome
 
-driver = webdriver.Safari()
+PATH = "/Users/maxbl/OneDrive/Desktop/Coding/chromedriver.exe"
 
-driver.implicitly_wait(10)
+driver = webdriver.Chrome(PATH)
+
 
 driver.get(r"https://www.supermarktcheck.de/lebensmittel/")
-driver.find_element_by_class_name("message-component").click()
+time.sleep(10)
+acceptframe = driver.find_element_by_id("sp_message_iframe_233610")
+driver.switch_to_frame(acceptframe)
+driver.find_element_by_xpath("/html/body/div/div[3]/div[3]/button").click()
+time.sleep(10)
+driver.quit()
+
+
+#driver.find_element_by_class_name("message-component").click()
 
 def pick_a_product():
     print("Hello, which product would you like to choose ? ")
@@ -23,7 +32,7 @@ def pick_a_product():
     
     return choosen_product
 
-product= pick_a_product()
+#product= pick_a_product()
 
 #def enter_website():
  #   driver.get(url)
@@ -33,5 +42,4 @@ product= pick_a_product()
 
 #enter_website()
 
-time.sleep(5)
-driver.quit()
+
