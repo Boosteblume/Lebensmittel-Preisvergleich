@@ -3,3 +3,5 @@ As part of the TechLab DataScience course, our project is to create a "Lebensmit
 
 @Teammembers
 Hier können wir alle Files von unserem Projekt hochladen und zusammenfügen. Sowohl Code als auch alle anderen Dokumente :)
+
+# Sophia sagt hallo
