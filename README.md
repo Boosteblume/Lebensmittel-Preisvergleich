@@ -10,3 +10,4 @@ Hier können wir alle Files von unserem Projekt hochladen und zusammenfügen. So
 Hallo von Anna 2, 3, 4
 5
 >>>>>>> 8f109fcba12efec66abd27af129dc454a4add50f
+Test Alex
