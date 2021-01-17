@@ -1,8 +1,8 @@
 import requests
-#Lisa sagt hallo
-url = r"https://www.lidl.de/de/cimarosa/b1201"
+
+url = r"https://www.real.de/item/search/?search_value=brot"
 r = requests.get(url)
-with open('lidl.txt', 'w') as file:
+with open('real.txt', 'w') as file:
     file.write(r.text)
 
 
