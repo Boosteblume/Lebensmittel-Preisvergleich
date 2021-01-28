@@ -2,7 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
-
+import json
 
 #launch the Browser and enter the webiste
 #accept the cookies
@@ -37,13 +37,20 @@ def enter_website():
 
 enter_website()
 
-#trying to store the Results in this variable
-search_results = driver.page_source
 
 
-#def choose_a_brand():
-    #for brands in search_results:
+#to get one artikel
+driver.find_element_by_css_selector("#rd-item-grid > div:nth-child(5)")
+test.get_attribute("outerHTML")
 
 
-time.sleep(5)
+#mulitple but keyword brote is shit
+driver.find_elements_by_xpath("//*[contains(text(), 'Brote')]")
+test[].get_attribute("outerHTML")
+
 #driver.quit()
+#trying to store the Results in this variable / should be a string
+#search_results = driver.page_source
+
+#DataTitle für Markenname und Produktname
+#metacontent = Price
