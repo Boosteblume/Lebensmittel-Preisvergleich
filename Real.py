@@ -3,6 +3,9 @@ from selenium.webdriver.common.keys import Keys
 import time
 import pandas as pd
 import json
+from bs4 import BeautifulSoup
+import requests
+
 
 #launch the Browser and enter the webiste
 #accept the cookies
@@ -40,13 +43,16 @@ enter_website()
 
 
 #to get one artikel
-driver.find_element_by_css_selector("#rd-item-grid > div:nth-child(5)")
+test = driver.find_element_by_css_selector("#rd-item-grid > div:nth-child(5)")
 test.get_attribute("outerHTML")
 
 
 #mulitple but keyword brote is shit
-driver.find_elements_by_xpath("//*[contains(text(), 'Brote')]")
-test[].get_attribute("outerHTML")
+test2 = driver.find_elements_by_xpath('//*[contains(text(), "brot")]')
+#test[].get_attribute("outerHTML")
+
+#if u know the brand it starts at element 3 so vesta[2]
+vesta = driver.find_elements_by_xpath('//*[contains(text(), "Vestakorn")]')
 
 #driver.quit()
 #trying to store the Results in this variable / should be a string
@@ -54,3 +60,12 @@ test[].get_attribute("outerHTML")
 
 #DataTitle für Markenname und Produktname
 #metacontent = Price
+
+
+#new idea
+
+url = driver.current_url
+url_code = requests.get(url)
+url_content = url_code.text
+soup = BeautifulSoup(url_content)
+#raw = soup.findAll()
