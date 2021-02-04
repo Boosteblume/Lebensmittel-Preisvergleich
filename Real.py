@@ -9,8 +9,7 @@ import requests
 
 #launch the Browser and enter the webiste
 #accept the cookies
-PATH = "/Users/maxbl/OneDrive/Desktop/Coding/chromedriver.exe"
-driver = webdriver.Chrome(PATH)
+driver = webdriver.Chrome()
 driver.get(r"https://www.real.de/")
 time.sleep(5)
 acceptframe = driver.find_element_by_id("consentSubmit").click()
