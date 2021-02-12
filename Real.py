@@ -11,7 +11,7 @@ import requests
 #accept the cookies
 driver = webdriver.Chrome()
 driver.get(r"https://www.real.de/")
-time.sleep(5)
+time.sleep(2)
 acceptframe = driver.find_element_by_id("consentSubmit").click()
 
 
@@ -42,16 +42,16 @@ enter_website()
 
 
 #to get one artikel
-test = driver.find_element_by_css_selector("#rd-item-grid > div:nth-child(5)")
-test.get_attribute("outerHTML")
+#test = driver.find_element_by_css_selector("#rd-item-grid > div:nth-child(5)")
+#test.get_attribute("outerHTML")
 
 
 #mulitple but keyword brote is shit
-test2 = driver.find_elements_by_xpath('//*[contains(text(), "brot")]')
+#test2 = driver.find_elements_by_xpath('//*[contains(text(), "brot")]')
 #test[].get_attribute("outerHTML")
 
 #if u know the brand it starts at element 3 so vesta[2]
-vesta = driver.find_elements_by_xpath('//*[contains(text(), "Vestakorn")]')
+#vesta = driver.find_elements_by_xpath('//*[contains(text(), "Vestakorn")]')
 
 #driver.quit()
 #trying to store the Results in this variable / should be a string
@@ -67,4 +67,5 @@ url = driver.current_url
 url_code = requests.get(url)
 url_content = url_code.text
 soup = BeautifulSoup(url_content)
+print(soup)
 #raw = soup.findAll()
