@@ -1,11 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-import pandas as pd
-import json
 from bs4 import BeautifulSoup
-import requests
-
+from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 #launch the Browser and enter the webiste
 #accept the cookies
@@ -38,8 +37,9 @@ def enter_website():
     search_bar.send_keys(Keys.RETURN)
 
 enter_website()
-
-
+select_menu = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/section/div[2]/div/div/select")
+drop = Select(select_menu)
+drop.select_by_index(1)
 
 #to get one artikel
 #test = driver.find_element_by_css_selector("#rd-item-grid > div:nth-child(5)")
@@ -61,11 +61,4 @@ enter_website()
 #metacontent = Price
 
 
-#new idea
-
-url = driver.current_url
-url_code = requests.get(url)
-url_content = url_code.text
-soup = BeautifulSoup(url_content)
-print(soup)
-#raw = soup.findAll()
+#driver.quit()
