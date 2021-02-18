@@ -41,24 +41,4 @@ select_menu = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/di
 drop = Select(select_menu)
 drop.select_by_index(1)
 
-#to get one artikel
-#test = driver.find_element_by_css_selector("#rd-item-grid > div:nth-child(5)")
-#test.get_attribute("outerHTML")
-
-
-#mulitple but keyword brote is shit
-#test2 = driver.find_elements_by_xpath('//*[contains(text(), "brot")]')
-#test[].get_attribute("outerHTML")
-
-#if u know the brand it starts at element 3 so vesta[2]
-#vesta = driver.find_elements_by_xpath('//*[contains(text(), "Vestakorn")]')
-
-#driver.quit()
-#trying to store the Results in this variable / should be a string
-#search_results = driver.page_source
-
-#DataTitle für Markenname und Produktname
-#metacontent = Price
-
-
 #driver.quit()
