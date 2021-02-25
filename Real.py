@@ -1,10 +1,9 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
-from bs4 import BeautifulSoup
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions as EC
+import csv
 
 #launch the Browser and enter the webiste
 #accept the cookies
@@ -32,13 +31,23 @@ product= pick_a_product()
 #search that product on the website
 def enter_website():
     driver.get(r"https://www.real.de/")
-    search_bar = driver.find_element_by_class_name("rd-header__search-field")
+    search_bar = driver.find_element_by_class_name("rd-search__input")
     search_bar.send_keys(product)
     search_bar.send_keys(Keys.RETURN)
+
 
 enter_website()
 select_menu = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/section/div[2]/div/div/select")
 drop = Select(select_menu)
 drop.select_by_index(1)
 
-#driver.quit()
+time.sleep(3)
+price = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-price")
+name = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-title")
+
+driver.quit()
+print(price, name)
+
+with open ("test.csv", "w") as csvfile:
+    csvwriter = csv.writer(csvfile)
+    csvwriter.writerow(price)
