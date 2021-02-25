@@ -3,7 +3,10 @@ from selenium.webdriver.common.keys import Keys
 import time
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
-import csv
+import pandas as pd
+import numpy as np
+import matplotlib as mlt
+import matplotlib.pyplot as plt
 
 #launch the Browser and enter the webiste
 #accept the cookies
@@ -48,6 +51,9 @@ name = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/d
 driver.quit()
 print(price, name)
 
-with open ("test.csv", "w") as csvfile:
-    csvwriter = csv.writer(csvfile)
-    csvwriter.writerow(price)
+#done with the webscraping 
+#creating the dataframe
+
+comparison_df = pd.DataFrame(columns=["Produkt Name", "Produkt Preis", "Supermarkt"])
+comparison_df["Produkt Name"] = name
+comparison_df["Produkt Preis"] = price
