@@ -8,6 +8,9 @@ import numpy as np
 import matplotlib as mlt
 import matplotlib.pyplot as plt
 
+#create empty list for all supermarkets
+supermarkets = []
+
 #launch the Browser and enter the webiste
 #accept the cookies
 driver = webdriver.Chrome()
@@ -23,9 +26,9 @@ def pick_a_product():
     #Wie machen wir es bzgl. Tippfehlern bei der Produkt suche ? 
     #und wie machen wir es bzgl. Cola => Coca Cola, Pepsi Cola etc
 
-    choosen_product = input()
+    chosen_product = input()
 
-    print("You choose ", choosen_product)
+    print("You choose ", chosen_product)
     
     return choosen_product
 
@@ -57,3 +60,24 @@ print(price, name)
 comparison_df = pd.DataFrame(columns=["Produkt Name", "Produkt Preis", "Supermarkt"])
 comparison_df["Produkt Name"] = name
 comparison_df["Produkt Preis"] = price
+
+#create class for every supermarket
+
+class Real():
+    def __init__():
+        product = input()
+
+
+class Aldi():
+    def __init__():
+        product = input()
+
+class Edeka():
+    def __init__():
+        product = input()
+
+#append supermarkets to supermarkets list
+
+supermarkets.append(Real)
+supermarkets.append(Aldi)
+supermarkets.append(Edeka)
