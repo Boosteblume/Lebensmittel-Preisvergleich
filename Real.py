@@ -57,3 +57,22 @@ print(price, name)
 comparison_df = pd.DataFrame(columns=["Produkt Name", "Produkt Preis", "Supermarkt"])
 comparison_df["Produkt Name"] = name
 comparison_df["Produkt Preis"] = price
+
+#create class for every supermarket
+
+class Real():
+  def __init__():
+    product = input()
+
+class Aldi():
+  def __init__():
+    product = input()
+
+class Edeka():
+  def __init__():
+    product = input()
+
+#append supermarkets to list (lieber dicts mit Zahl etc)
+supermarkets.append(Real)
+supermarkets.append(Aldi)
+supermarkets.append(Edeka)
