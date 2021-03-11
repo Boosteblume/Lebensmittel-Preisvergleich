@@ -11,17 +11,17 @@ import matplotlib.pyplot as plt
 #launch the Browser and enter the webiste
 #accept the cookies
 driver = webdriver.Chrome()
-driver.get(r"https://www.real.de/")
+driver.get(r"https://www.aldi-sued.de/de/homepage.html")
 time.sleep(2)
-acceptframe = driver.find_element_by_id("consentSubmit").click()
-
+#um cookies zu bestätigen gibt es keine ID zu suchen, sondern class. deswegen habe ich anstatt find_element_by_id - find_element_by_class_name. Ist es richtig?
+acceptframe = driver.find_element_by_class_name("btn btn-primary btn-minwidth js-privacy-accept").click()
+# oder als alternative direkt nach xpath suchen:
+# acceptframe = driver.find_element_by_xpath(/html/body/div[2]/div/div/form/div[3]/div/div[2]/button).click()
 
 #choose a product 
 def pick_a_product():
     print("Hello, which product would you like to choose ? ")
     print("")
-    #Wie machen wir es bzgl. Tippfehlern bei der Produkt suche ? 
-    #und wie machen wir es bzgl. Cola => Coca Cola, Pepsi Cola etc
 
     choosen_product = input()
 
@@ -33,8 +33,8 @@ product= pick_a_product()
 
 #search that product on the website
 def enter_website():
-    driver.get(r"https://www.real.de/")
-    search_bar = driver.find_element_by_class_name("rd-search__input")
+    driver.get(r"https://www.aldi-sued.de/de/homepage.html")
+    search_bar = driver.find_element_by_class_name("form-control at-input-search_txt ui-autocomplete-input")
     search_bar.send_keys(product)
     search_bar.send_keys(Keys.RETURN)
 
