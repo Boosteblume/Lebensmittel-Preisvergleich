@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 
 #launch the Browser and enter the webiste
 #accept the cookies
-driver = webdriver.Safari()
-driver.get(r"https://produkte.metro.de/shop")
+driver = webdriver.Chrome()
+driver.get(r"https://metro.de/")
 time.sleep(3)
 
 #problemhere
@@ -35,20 +35,23 @@ product= pick_a_product()
 
 #search that product on the website
 def enter_website():
-    driver.get(r"https://produkte.metro.de/shop")
-    search_bar = driver.find_element_by_class_name("form-control")
+    driver.get(r"https://metro.de/")
+    driver.find_element_by_xpath("/html/body/div[1]/header/div/div/div/div[1]/div/div/div/div/div/div[3]/div/a[2]").click()
+    time.sleep(3)
+    search_bar = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[1]/div[2]/div/nav/div/table/tbody/tr/td[2]/div/div/form/div/div/span/input")
     search_bar.send_keys(product)
     search_bar.send_keys(Keys.RETURN)
 
 
 enter_website()
-#select_menu = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/section/div[2]/div/div/select")
-#drop = Select(select_menu)
-#drop.select_by_index(1)
+
+#switch to iframe
+#dann wieder ul mit lis
 
 time.sleep(3)
 #price = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-price")
+#preis ist in span als text eingespeichert wieder .text() versuchen
 #name = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-title")
-
+#name ist als h4 eingespeichert also vllt einfach .text()
 #driver.quit()
 #print(price, name)
