@@ -37,7 +37,7 @@ product= pick_a_product()
 def enter_website():
     driver.get(r"https://metro.de/")
     driver.find_element_by_xpath("/html/body/div[1]/header/div/div/div/div[1]/div/div/div/div/div/div[3]/div/a[2]").click()
-    time.sleep(3)
+    time.sleep(4)
     search_bar = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[1]/div[2]/div/nav/div/table/tbody/tr/td[2]/div/div/form/div/div/span/input")
     search_bar.send_keys(product)
     search_bar.send_keys(Keys.RETURN)
@@ -45,13 +45,15 @@ def enter_website():
 
 enter_website()
 
-#switch to iframe
-#dann wieder ul mit lis
+#dann wieder ul mit lis / einfach 2 click befehle
+driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[2]/div/div/div[1]/div[1]/div/div[3]/div/div[1]/div/button").click()
+time.sleep(1)
+driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[2]/div/div/div[1]/div[1]/div/div[3]/div/div[1]/div/ul/li[3]").click()
 
 time.sleep(3)
-#price = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-price")
-#preis ist in span als text eingespeichert wieder .text() versuchen
-#name = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-title")
-#name ist als h4 eingespeichert also vllt einfach .text()
+price0 = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[2]/div/div/div[2]/div/div[2]/div[3]/span[1]/div/div/div/div[3]/div/p[2]/span/span/span").get_attribute("innerHTML")
+price1 = price0.split("&")
+price = price1[0]
+name = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[2]/div/div/div[2]/div/div[2]/div[3]/span[1]/div/div/div/div[2]/div[1]/a/h4").get_attribute("innerHTML")
 #driver.quit()
-#print(price, name)
+print(price, name)
