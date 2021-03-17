@@ -7,7 +7,7 @@ import time
 import os
 from selenium.webdriver import chrome
 
-PATH = "/Users/maxbl/OneDrive/Desktop/Coding/chromedriver.exe"
+PATH = "/Users/sophia/Documents/Lebensmittel-Preisvergleich/chromedriver"
 
 driver = webdriver.Chrome(PATH)
 
