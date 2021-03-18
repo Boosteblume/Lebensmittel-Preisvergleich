@@ -25,10 +25,11 @@ def pick_a_product():
 
 product= pick_a_product()
 
-url = "https://produkte.metro.de/shop/search?q="+product+"&sorting=price+asc"
+url = "https://produkte.metro.de/shop/search?q=" + product + "&sorting=price+asc"
 
 driver.get(url)
 time.sleep(4)
+
 name = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[2]/div/div/div[2]/div/div[2]/div[3]/span[1]/div/div/div/div[2]/div[1]/a/h4").get_attribute("innerHTML")
 
 price0 = driver.find_element_by_xpath("/html/body/div[2]/div/div/div[2]/div/div[4]/div[2]/div/div/div[2]/div/div[2]/div[3]/span[1]/div/div/div/div[3]/div/p[2]/span/span/span").get_attribute("innerHTML")
