@@ -2,8 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-driver = webdriver.Chrome()
-
 #launch the Browser and enter the webiste
 #accept the cookies
 driver = webdriver.Chrome()
