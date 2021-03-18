@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 
 #launch the Browser and enter the webiste
 #accept the cookies
-driver = webdriver.Chrome(executable_path='C:/Program Files (x86)/ChromeDriver/chromedriver')
+driver = webdriver.Chrome()
 driver.get(r"https://www.alnatura.de/de-de/")
 time.sleep(5)
 acceptframe = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[5]/div[2]/a[3]").click()
