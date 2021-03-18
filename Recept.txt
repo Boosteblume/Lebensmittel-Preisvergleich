@@ -18,3 +18,4 @@ Netto
 Müller
 Rossmann
 Alnatura
+Edeka24
