@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 driver = webdriver.Chrome()
 driver.get(r"https://www.interspar.at/")
 time.sleep(2)
-acceptframe = driver.find_element_by_xpath("/html/body/div[2]/div[1]/div[2]/span[1]/a/span").click()
+acceptframe = driver.find_element_by_id("cmpbntyestxt").click()
 #choose a product 
 def pick_a_product():
     print("Hello, which product would you like to choose ? ")
@@ -25,30 +25,23 @@ def pick_a_product():
     print("You choose ", choosen_product)
     
     return choosen_product
+
 product= pick_a_product()
+
 #search that product on the website
 def enter_website():
     driver.get(r"https://www.interspar.at/")
     search_bar = driver.find_element_by_class_name("metasearch-search-field search-input") 
     search_bar.send_keys(product)
     search_bar.send_keys(Keys.RETURN)
+
 enter_website()
-select_menu = driver.find_element_by_xpath("/html/body/div[2]/main/div/div[3]/div[1]/section[2]/form/select")
-drop = Select(select_menu)
-drop.select_by_index(3)
+
+# ab hier bin ich noch unsicher. Wie wählt man das richtige infos daraus? muss man noch ein mal klicken um zum richtigen Preis zu kommen
+select_menu = driver.find_element_by_xpath("...").click()
 time.sleep(3)
-price = driver.find_element_by_xpath("/html/body/div[2]/main/div/div[3]/section/ul/li[1]/a/span/span[2]/span/ins/span").text
-price = price.replace("*", "€")
-name = driver.find_element_by_class_name("tc-product-name").text
+
+price = driver.find_element_by_xpath("...").text
+name = driver.find_element_by_class_name("...").text
 driver.quit()
 print(price, name)
-
-with open ("test.csv", "w") as csvfile:
-    csvwriter = csv.writer(csvfile)
-    csvwriter.writerow(price) 
-#done with the webscraping 
-#creating the dataframe
-
-comparison_df = pd.DataFrame(columns=["Produkt Name", "Produkt Preis", "Supermarkt"])
-comparison_df["Produkt Name"] = name
-comparison_df["Produkt Preis"] = price 
