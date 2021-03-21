@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 import csv
 
 driver = webdriver.Chrome()
-
+#Userinput for a given product
 def pick_a_product():
     print("Hello, which product would you like to choose ? ")
     print("")
@@ -26,9 +26,9 @@ def writefile(shop, name, price):
         csvwriter = csv.writer(csvfile)
         csvwriter.writerow([shop, name, price])  
 
-
+#Webscraper for Real
 def real(driver,product):
-
+    #Uses Chromedriver to access shopsite, accept cookies and enter the product into the searchbar
     def enter_website():
         driver.get(r"https://www.real.de/")
         time.sleep(2)
@@ -39,19 +39,20 @@ def real(driver,product):
         search_bar.send_keys(Keys.RETURN)
 
     enter_website()
-
+    #Selects filtering option; cheapest product
     select_menu = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/section/div[2]/div/div/select")
     drop = Select(select_menu)
     drop.select_by_index(1)
-
+    #Scrapes product price and name
     time.sleep(3)
     price = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-price")
     name = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-title")
     shop = "REAL"
 
+    #Adds price and name of the corresponding shop to a csv file
     writefile(shop, name, price)
 
-
+#Webscraper for Rossmann
 def rossmann(driver, product):
     def enter_website():
         driver.get(r"https://www.rossmann.de/de/ernaehrung/c/olcat1_4")
@@ -74,7 +75,7 @@ def rossmann(driver, product):
     
     writefile(shop, name, price)
 
-
+#Webscraper for Müller
 def mueller(driver, product):
     def enter_website():
         driver.get(r"https://www.edeka24.de/")
@@ -94,7 +95,7 @@ def mueller(driver, product):
 
     writefile(shop, name, price)
 
-
+#Webscraper for Netto
 def netto(driver, product):
     def enter_website():
         driver.get(r"https://www.netto-online.de/lebensmittel/")
@@ -117,7 +118,7 @@ def netto(driver, product):
 
     writefile(shop, name, price)
     
-
+#Webscraper for Edeka24
 def edeka24(driver, product):
     def enter_website():
         driver.get(r"https://www.edeka24.de/")
@@ -138,7 +139,7 @@ def edeka24(driver, product):
 
     writefile(shop, name, price)
 
-
+#Webscraper for Alnatura
 def alnatura(driver, product):
     def enter_website():
         driver.get(r"https://www.alnatura.de/de-de/")
@@ -159,16 +160,11 @@ def alnatura(driver, product):
     time.sleep(5)
     price = driver.find_element_by_xpath("/html/body/main/div[2]/div[3]/div/div[1]/div[2]/dl/dd[6]").text
     name = driver.find_element_by_xpath("/html/body/main/div[2]/div[3]/div/div[1]/div[2]/dl/dd[1]").text
-    driver.back()
-    time.sleep(5)
-    driver.find_element_by_xpath("/html/body/main/div[2]/div[2]/div[2]/div/div[1]/div[2]/a/div[2]/img").click()
-    price2 = driver.find_element_by_xpath("/html/body/main/div[2]/div[3]/div/div[1]/div[2]/dl/dd[6]").text
-    name2 = driver.find_element_by_xpath("/html/body/main/div[2]/div[3]/div/div[1]/div[2]/dl/dd[1]").text
     shop = "Alnatura"
 
     writefile(shop, name, price)
 
-
+#Webscraper for Metro
 def metro(driver, product):
     url = "https://produkte.metro.de/shop/search?q=" + product + "&sorting=price+asc"
 
