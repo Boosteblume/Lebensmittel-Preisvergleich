@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 import csv
 
 driver = webdriver.Chrome()
+
 #Userinput for a given product
 def pick_a_product():
     print("Hello, which product would you like to choose ? ")
@@ -31,20 +32,23 @@ def real(driver,product):
     #Uses Chromedriver to access shopsite, accept cookies and enter the product into the searchbar
     def enter_website():
         driver.get(r"https://www.real.de/")
-        time.sleep(2)
-        acceptframe = driver.find_element_by_id("consentSubmit").click()
-        time.sleep(2)
+        time.sleep(4)
+        acceptframe = driver.find_element_by_xpath("/html/body/dialog/div/div[1]/button").click()
+        time.sleep(3)
         search_bar = driver.find_element_by_class_name("rd-search__input")
         search_bar.send_keys(product)
         search_bar.send_keys(Keys.RETURN)
 
     enter_website()
+
     #Selects filtering option; cheapest product
-    select_menu = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/section/div[2]/div/div/select")
+    time.sleep(3)
+    select_menu = driver.find_element_by_xpath("/html/body/div[1]/section/div/div[2]/div/div/div/section/div[2]/div/div/select")
     drop = Select(select_menu)
     drop.select_by_index(1)
     #Scrapes product price and name
-    time.sleep(3)
+    time.sleep(2)
+
     price = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-price")
     name = driver.find_element_by_xpath("/html/body/div/section/div/div[2]/div/div/div/div[2]/div[1]").get_attribute("data-title")
     shop = "REAL"
@@ -181,7 +185,9 @@ def metro(driver, product):
     writefile(shop, name, price)
 
 #list of all shops
-sites = [real, alnatura, mueller, rossmann, edeka24, metro, netto]
+sites = [real, alnatura, mueller, rossmann]
+
+#edeka24, metro, netto
 
 for site in sites:
     site(driver, product)
