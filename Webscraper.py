@@ -62,6 +62,7 @@ def rossmann(driver, product):
         driver.get(r"https://www.rossmann.de/de/ernaehrung/c/olcat1_4")
         time.sleep(2)
         acceptframe = driver.find_element_by_id("onetrust-accept-btn-handler").click()
+        time.sleep(2)
         search_bar = driver.find_element_by_class_name("rm-searchbar__field")
         search_bar.send_keys(product)
         search_bar.send_keys(Keys.RETURN)
@@ -82,10 +83,10 @@ def rossmann(driver, product):
 #Webscraper for Müller
 def mueller(driver, product):
     def enter_website():
-        driver.get(r"https://www.edeka24.de/")
+        driver.get(r"https://www.mueller.de/drogerie/lebensmittel/nahrung/")
         time.sleep(2)
-        acceptframe = driver.find_element_by_xpath("/html/body/div[4]/div[4]/div[2]/div/div[2]/div[1]/button").click()
-        time.sleep(2)
+        acceptframe = driver.find_element_by_id("uc-btn-accept-banner").click()
+        time.sleep(3)
         search_bar = driver.find_element_by_xpath("/html/body/div[1]/header/div/div[1]/div[7]/div/form/div/input[1]")
         search_bar.send_keys(product)
         search_bar.send_keys(Keys.RETURN)
@@ -93,8 +94,13 @@ def mueller(driver, product):
     enter_website()
 
     time.sleep(2)
-    price = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/div/ul/li[1]/form/div/div/div[2]/div/a/h2").get_attribute("innerHTML")
-    name = driver.find_element_by_xpath("/html/body/div[1]/div[3]/div/div/ul/li[1]/form/div/div/div[2]/div/div/div").get_attribute("innerHTML")
+    
+
+    driver.find_element_by_xpath("/html/body/div[1]/div[2]/main/div/div/div[2]/div[1]/div[2]/div/div/select/option[3]").click()
+
+    time.sleep(3)
+    price = driver.find_element_by_xpath("/html/body/div[1]/div[2]/main/div/div/div[2]/div[3]/div/div[1]/a[1]/div/div[5]/span[1]").get_attribute("innerHTML")
+    name = driver.find_element_by_xpath("/html/body/div[1]/div[2]/main/div/div/div[2]/div[3]/div/div[1]/a[1]/div/div[7]").get_attribute("innerHTML")
     shop = "Müller"
 
     writefile(shop, name, price)
@@ -149,7 +155,7 @@ def alnatura(driver, product):
         driver.get(r"https://www.alnatura.de/de-de/")
         time.sleep(2)
         acceptframe = driver.find_element_by_xpath("/html/body/div[1]/div[1]/div[5]/div[2]/a[3]").click()
-        time.sleep(2)
+        time.sleep(3)
         driver.find_element_by_xpath("/html/body/header/div/div[3]/div/div[2]/ul/li[2]").click() #extraeingefügt
         search_bar = driver.find_element_by_xpath("/html/body/header/div/div[3]/div/div[2]/ul/div/div/div[3]/div[1]/input") #von Class zu xpath
         search_bar.send_keys(product)
@@ -170,6 +176,10 @@ def alnatura(driver, product):
 
 #Webscraper for Metro
 def metro(driver, product):
+    #load the page and accept the cookie
+    driver.get(r"https://metro.de")
+    driver.find_element_by_xpath("/html/body/div/footer/div/div/div[2]/div/div/div/div/div/div/div[2]/button").click()
+    
     url = "https://produkte.metro.de/shop/search?q=" + product + "&sorting=price+asc"
 
     driver.get(url)
