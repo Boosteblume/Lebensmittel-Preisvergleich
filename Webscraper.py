@@ -87,7 +87,7 @@ def mueller(driver, product):
         time.sleep(2)
         acceptframe = driver.find_element_by_id("uc-btn-accept-banner").click()
         time.sleep(3)
-        search_bar = driver.find_element_by_xpath("/html/body/div[1]/header/div/div[1]/div[7]/div/form/div/input[1]")
+        search_bar = driver.find_element_by_xpath("/html/body/div[1]/div[2]/div/header/div[3]/div/div/form/div/div/input[1]")
         search_bar.send_keys(product)
         search_bar.send_keys(Keys.RETURN)
 
@@ -117,7 +117,8 @@ def netto(driver, product):
         search_bar.send_keys(Keys.RETURN)
 
     enter_website()
-    select_menu = driver.find_element_by_xpath("/html/body/div[2]/main/div/div[3]/div[1]/section[2]/form/select")
+    time.sleep(2)
+    select_menu = driver.find_element_by_xpath("/html/body/div[2]/main/div/div[3]/div[2]/section[2]/form/select")
     drop = Select(select_menu)
     drop.select_by_index(3)
     time.sleep(3)
@@ -127,7 +128,6 @@ def netto(driver, product):
     shop = "Netto"
 
     writefile(shop, name, price)
-    
 #Webscraper for Edeka24
 def edeka24(driver, product):
     def enter_website():
@@ -195,10 +195,11 @@ def metro(driver, product):
     writefile(shop, name, price)
 
 #list of all shops
-sites = [real, alnatura, mueller, rossmann]
+sites = [real, alnatura, rossmann, edeka24, metro, netto, mueller]
 
-#edeka24, metro, netto
 
 for site in sites:
     site(driver, product)
 
+
+driver.quit()
